@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the Staywize platform.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique ID of the user." },
+        "name": { "type": "string", "description": "The display name of the user." },
+        "email": { "type": "string", "description": "The email address of the user." },
+        "avatar": { "type": "string", "description": "The avatar URL of the user." },
+        "points": { "type": "number", "description": "Loyalty points earned." },
+        "tier": { "type": "string", "enum": ["Silver", "Gold", "Platinum", "Diamond"], "description": "The loyalty tier of the user." },
+        "role": { "type": "string", "enum": ["user", "admin"], "description": "The role of the user." }
+      },
+      "required": ["uid", "name", "email", "role"]
+    },
+    "PropertyEnrollment": {
+      "title": "Property Enrollment",
+      "description": "A property submission for review.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The ID of the user who enrolled the property." },
+        "title": { "type": "string", "description": "The title of the property listing." },
+        "type": { "type": "string", "description": "The type of property (e.g., condo, house)." },
+        "listingType": { "type": "string", "description": "The type of listing (e.g., rent, sale)." },
+        "address": { "type": "string", "description": "The full address of the property." },
+        "city": { "type": "string", "description": "The city where the property is located." },
+        "price": { "type": "number", "description": "The price of the property." },
+        "description": { "type": "string", "description": "A description of the property." },
+        "bedrooms": { "type": "string", "description": "Number of bedrooms." },
+        "bathrooms": { "type": "string", "description": "Number of bathrooms." },
+        "sqm": { "type": "number", "description": "Floor area in square meters." },
+        "amenities": { "type": "array", "items": { "type": "string" }, "description": "List of amenities." },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"], "description": "The status of the enrollment." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the enrollment was created." }
+      },
+      "required": ["userId", "title", "type", "listingType", "address", "city", "price", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User profile documents."
+    },
+    "/enrollments/{enrollmentId}": {
+      "schema": "PropertyEnrollment",
+      "description": "Property enrollment submissions."
+    }
+  }
+}

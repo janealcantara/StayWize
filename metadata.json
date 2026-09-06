@@ -1,0 +1,7 @@
+{
+  "name": "Staywize Proptech Superplatform",
+  "description": "The Philippines' first AI-powered, fully integrated Proptech Superplatform for real estate, travel, and lifestyle.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
